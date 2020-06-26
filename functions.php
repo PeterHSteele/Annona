@@ -7,9 +7,9 @@
  * @package annona
  */
 
-if ( ! defined( '_S_VERSION' ) ) {
+if ( ! defined( 'ANNONA_VERSION' ) ) {
 	// Replace the version number of the theme on each release.
-	define( '_S_VERSION', '1.0.0' );
+	define( 'ANNONA_VERSION', '1.0.0' );
 }
 
 if ( ! function_exists( 'annona_setup' ) ) :
@@ -51,6 +51,7 @@ if ( ! function_exists( 'annona_setup' ) ) :
 		register_nav_menus(
 			array(
 				'menu-1' => esc_html__( 'Primary', 'annona' ),
+				'menu-2' => esc_html__( 'Social', 'annona' )
 			)
 		);
 
@@ -143,19 +144,36 @@ add_action( 'widgets_init', 'annona_widgets_init' );
  * Enqueue scripts and styles.
  */
 function annona_scripts() {
-	wp_enqueue_style( 'annona-style', get_stylesheet_uri(), array(), _S_VERSION );
+	if ( is_page_template( 'page-templates/featured.php' ) ){
+		wp_enqueue_script( 'annona-site-title-effect', get_template_directory_uri() . '/js/site-title.js', array(), ANNONA_VERSION, true );
+	}
+
+	wp_enqueue_style( 'annona-style', get_stylesheet_uri(), array(), ANNONA_VERSION );
 	wp_style_add_data( 'annona-style', 'rtl', 'replace' );
 
-	wp_enqueue_script( 'annona-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
 
-	wp_enqueue_script( 'annona-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), _S_VERSION, true );
+	
+	wp_enqueue_style('dashicons');
+	
+
+	wp_enqueue_style( 'fontawesome', get_stylesheet_directory_uri() . '/assets/icons/fontawesome/css/all.css' );
+
+	wp_enqueue_script( 'annona-navigation', get_template_directory_uri() . '/js/navigation.js', array(), ANNONA_VERSION, true );
+
+	wp_enqueue_script( 'annona-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), ANNONA_VERSION, true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
 }
 add_action( 'wp_enqueue_scripts', 'annona_scripts' );
+/*
+function annona_increase_testimonial_count( $count ){
+	return 6;
+}
 
+add_filter( 'annona_testimonial_count' , 'annona_increase_testimonial_count' );
+*/
 /**
  * Implement the Custom Header feature.
  */
@@ -174,7 +192,7 @@ require get_template_directory() . '/inc/template-functions.php';
 /**
  * Customizer additions.
  */
-require get_template_directory() . '/inc/customizer.php';
+require get_template_directory() . '/inc/customizer/customizer.php';
 
 /**
  * Load Jetpack compatibility file.
@@ -182,4 +200,5 @@ require get_template_directory() . '/inc/customizer.php';
 if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
+
 

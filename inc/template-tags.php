@@ -163,3 +163,61 @@ if ( ! function_exists( 'wp_body_open' ) ) :
 		do_action( 'wp_body_open' );
 	}
 endif;
+
+if ( ! function_exists( 'annona_testimonials' ) ) :
+
+	/* 
+	Prints markup for testimonials section in featured.php.
+	This is section 4 as far as the customizer is concerned.
+	*/
+	function annona_testimonials(){
+		$num_testimonials = min( 6, apply_filters( 'annona_testimonial_count', 3 ));
+		$active_testimonials = array();
+		for ( $i = 0; $i < $num_testimonials; $i++ ){
+			$source_post = get_theme_mod( 'annona-sec4-content' . ( $i + 1 ), null ); 
+			if ( $source_post ){
+				$active_testimonials[$i] = $source_post;
+			}
+		}
+		$active = count( $active_testimonials );
+		foreach ( $active_testimonials as $testimonial_num => $id ){
+			$content = apply_filters( 'the_content', get_the_content( null, null, $id ));
+			$class = implode(
+				" ", 
+				apply_filters( 'annona_testimonials_class', 
+					array( 
+						'annona-testimonial', 
+						'annona-has-' . $active . '-testimonials',
+						'annona-testimonial-' . $testimonial_num 
+					)
+				)
+			);
+			?>
+			<section class="<?php echo esc_attr( $class ) ?>">
+				<div class="testimonial-icon">
+					<i class="fas fa-ribbon fa-3x"></i>
+				</div> 
+				<h2><?php echo apply_filters( 'the_title', get_the_title( $id ), $id ); ?></h2> 
+				<?php echo $content; ?>
+			</section>
+			<?php
+		}
+	}
+endif;
+
+if ( ! function_exists( 'annona_background_image' ) ) :
+
+	/**
+	* echos the background image url for posts using the background-image.php template. 
+	*/
+
+	function annona_background_image( $setting, $size = 'large' ){
+		$id = get_theme_mod( $setting, null );
+		if ( $id ){
+			$image_attrs = wp_get_attachment_image_src( $id, $size );
+			$background_image = $image_attrs[0];
+			echo esc_url( $background_image );
+		}
+	}
+
+endif;

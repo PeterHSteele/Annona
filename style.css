@@ -24,6 +24,7 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 >>> TABLE OF CONTENTS:
 ----------------------------------------------------------------
 # Normalize
+# Colors
 # Typography
 # Elements
 # Forms
@@ -40,8 +41,8 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 # Media
 	## Captions
 	## Galleries
-# Colors
 # Layout
+# Page Templates
 --------------------------------------------------------------*/
 
 /*--------------------------------------------------------------
@@ -366,6 +367,33 @@ template {
 	display: none;
 }
 
+/*
+================
+Colors
+================
+*/
+
+:root{
+	--pink: #e95d76;
+	--pinklite: #ff95aa;
+	--pinkrgba: rgba( 233, 93, 118, .7);
+	--orange: #df7953;
+	--yellow: #c59648;
+	--yellowlite: #ffcc7b;
+	--yellowrgba: rgba( 197, 150, 72, .7);
+	--green: #a4ac5c;
+	--greenlite: #dce390;
+	--greenrgba: rgba(164, 172, 92, .7);
+	--greenblue: #83bd84;
+	--purple: #413956;
+	--purplergba: rgba( 65, 57, 86, .6 );
+	--purpleLiteOne: #514867;
+	--purpleLiteTwo: #615870;
+	--purpleDarkOne: #302845;
+	--purpleDarkTwo: #282240;
+	--violet: #802fcb;
+}
+
 /*--------------------------------------------------------------
 # Typography
 --------------------------------------------------------------*/
@@ -376,8 +404,9 @@ select,
 optgroup,
 textarea {
 	color: #404040;
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+	font-family: 'Catamaran', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 	font-size: 1rem;
+	font-size: 18px;
 	line-height: 1.5;
 }
 
@@ -458,6 +487,7 @@ big {
 
 html {
 	box-sizing: border-box;
+	scroll-behavior: smooth;
 }
 
 body {
@@ -604,17 +634,17 @@ textarea {
 ## Links
 --------------------------------------------------------------*/
 a {
-	color: #4169e1;
+	color: var(--pink);
 }
 
 a:visited {
-	color: #800080;
+	color: var(--violet);
 }
 
 a:hover,
 a:focus,
 a:active {
-	color: #191970;
+	color: var(--violet);
 }
 
 a:focus {
@@ -630,17 +660,30 @@ a:active {
 ## Menus
 --------------------------------------------------------------*/
 .main-navigation {
-	display: block;
-	width: 100%;
+	position: absolute;
+	margin: 0;
+	width: 23.077%;
+	height: 100vh;
+	background: var(--greenblue);
+	transition: .5s top;
 }
 
+
+
 .main-navigation ul {
-	display: none;
 	list-style: none;
 	margin: 0;
 	padding-left: 0;
+	position: absolute;
+	top: 80px;
+	width: 100%;
+	transition: .5s top;
 }
 
+.menu-active .main-navigation ul{
+	top: 0;
+}
+/*
 .main-navigation ul ul {
 	box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
 	float: left;
@@ -669,6 +712,8 @@ a:active {
 .main-navigation ul li.focus > ul {
 	left: auto;
 }
+*/
+
 
 .main-navigation li {
 	position: relative;
@@ -677,22 +722,87 @@ a:active {
 .main-navigation a {
 	display: block;
 	text-decoration: none;
+	background: var(--purple);
+	transition: .5s padding;
+}
+
+.main-navigation a,
+.main-navigation a:hover,
+.main-navigation a:visited,
+.main-navigation a:active{
+	color: var(--greenblue);
+}
+
+.main-navigation a:hover,
+.main-navigation a:focus{
+	background: var(--orange);
+	color: var(--purple);
+}
+
+.menu-active .main-navigation a{
+	padding: 1em;
 }
 
 /* Small menu. */
-.menu-toggle,
-.main-navigation.toggled ul {
-	display: block;
+.menu-toggle {
+	position: fixed;
+	top: 1em;
+	left: 1em;
+	background: transparent;
+	color: #fff;
+	z-index: 1;
+	transition: .5s left;
 }
+
+.skip-to-cta{
+	font-size: 2.3em;
+	line-height: 1rem;
+	padding: 0 .2em;
+	position: absolute;
+	bottom: 1rem;
+	right: 1rem;
+	background: transparent;
+	border: 1px solid white;
+	border-radius: 5px;
+	text-decoration: none;
+}
+
+.skip-to-cta i{
+	color: #fff;
+}
+
+.logged-in .skip-to-cta{
+	bottom: calc( 1rem + 32px );
+}
+
+.banner-section-clickable{
+	background: rgba( 40, 40, 40, .6);
+	border: 1px solid #fff;
+}
+
+.banner-section-clickable:hover,
+.banner-section-clickable:focus{
+	background: var(--greenrgba);
+}
+
+.logged-in .menu-toggle{
+	top: calc( 1em + 32px );
+}
+
+.menu-active .menu-toggle {
+	left: 32%;
+}
+
+
 
 @media screen and (min-width: 37.5em) {
 
 	.menu-toggle {
-		display: none;
+		/*display: none;*/
 	}
 
 	.main-navigation ul {
-		display: flex;
+		display: block;
 	}
 }
 
@@ -954,17 +1064,486 @@ object {
 }
 
 /*
-================
-Colors
-================
+==================
+Layout
+==================
 */
 
+/*
+==================
+Page Templates
+==================
+*/
+/*
 :root{
-	--pink: '#e95d76';
-	--orange: '#df7953';
-	--yellow: '#c59648';
-	--green: '#a4ac5c';
-	--greenblue: '#83bd84';
-	--purple: '#413956';
-	--violet: '#802fcb';
+	--pink: #e95d76;
+
+	--orange: #df7953;
+	--yellow: #c59648;
+	--green: #a4ac5c;
+	--greenblue: #83bd84;
+	--purple: #413956;
+	--violet: #802fcb;
 }
+*/
+
+/*
+==================
+General
+==================
+*/
+
+.btn-link{
+	display: block;
+	width: 60%;
+	margin: 0 auto;
+	border-radius: 1.25em;
+	text-decoration: none;
+	text-align: center;
+	padding: .5em;
+}
+
+.btn-link,
+.btn-link:visited,
+.btn-link:hover,
+.btn-link:active{
+	color: white;
+}
+
+.mask{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: rgba( 0, 0, 0, .2 );
+}
+
+/*
+=================
+Layout
+=================
+*/
+
+.content-track{
+	overflow: hidden;
+	min-height: 100vh;
+	position: relative;
+}
+
+.horizontal-animate{
+	position: relative;
+	width: 130%;
+	left: -30%; 
+	transition: .5s left;
+}
+
+.menu-active .horizontal-animate{
+	left: 0;
+}
+
+/*
+------------------
+Featured.php
+------------------
+*/
+
+
+.content{
+	position: relative;
+	top: 0;
+	left: 23.077%;
+	width: 76.923%
+}
+
+.img-featured{
+	width: 100%;
+	height: 100vh;
+	background-image: url('./assets/img/bdp1.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+	padding-top: 10em;
+	position: relative;
+}
+
+.img-featured .mask{
+	padding-top: 5em;
+}
+
+.annona-text-mask{
+	padding: .5rem 1rem;
+	background: rgba(0,0,0,.3);
+}
+
+.site-title{
+	font-size: 4em;
+	margin: 0;
+	color: #fff;
+	text-align: center;
+	opacity: 0;
+	transition: .3s opacity;
+}
+
+.site-title.visible{
+	opacity: 1;
+}
+
+.secondary-img-section{
+	display: flex;
+	flex-flow: row nowrap;
+}
+
+.img-second:first-child{
+	background-image: url('./assets/img/bdp2.jpg');
+}
+
+.img-second{
+	flex: 0 0 50%;
+	height: 25rem;
+	position: relative;
+	background-image: url('./assets/img/bdp3.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+.img-second .mask{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background: var(--pinkrgba);
+}
+
+.img-second:first-child .mask{
+	background: var(--yellowrgba)
+}
+
+.img-second .btn-link{
+	margin-top: 12rem;
+	background: var(--yellow);
+	letter-spacing: .08em;
+	text-transform: uppercase;
+}
+
+.img-second .btn-link:hover{
+	background: var(--yellowlite);
+}
+
+.img-second:first-child .btn-link{
+	background: var(--pink);
+}
+
+.img-second:first-child .btn-link:hover{
+	background: var(--pinklite);
+}
+
+.section-3{
+	font-family: 'Quattrocento', serif;
+	display: flex;
+	background-image: url('./assets/forks7.svg');
+	background-size: cover;	
+}
+
+.section-3 > div{
+	flex: 0 0 25%;
+	padding: 1em;
+}
+
+.section-3 > div:last-child{
+	flex: 0 0 50%;
+}
+/*
+------------
+Featured.php Section: Image
+------------
+*/
+
+.section-5{
+	background-size: cover;
+	background-attachment: fixed;
+	background-repeat: no-repeat; 
+	height: 100vh;
+	background: transparent;
+	overflow-y: hidden 
+}
+
+.parallax{
+	position: relative;
+}
+
+.parallax-content{
+	padding-top: 200px;
+}
+
+.parallax-image{
+	position: absolute;
+	z-index: -1
+}
+/*
+.section-5 section{
+	position: relative;
+	height: 60vh;
+	display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-shadow: 0 0 5px #000;
+}
+
+.parallax:after{
+	content:"";
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	transform: translateZ(-1px) scale(1.5);
+	background-size: 100%;
+	z-index: -1;
+	height: 100%;
+}
+
+.bg1::after{
+	background-image: url('./assets/img/bdp4.jpg');
+}
+
+.bg2:after{
+	background-image: url('./assets/img/bdp2.jpg');
+}
+
+
+/*
+
+
+.parallax-container{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  perspective: 8px;
+  perspective-origin: 0%;
+  display: flex;
+}
+
+.image {
+  position: absolute;
+  transform-origin: 0 50%;
+  width: 420px;
+  height: 420px;
+}
+
+.background__image{
+	position: absolute;
+ 	 transform-origin: 0 50%;
+	height: 100%;
+  	transform: translateZ(0px) scale(1);
+}
+
+.middle__image{
+	position: absolute;
+  	transform-origin: 0 50%;
+	top: 150px;
+  	transform: translateZ(5px) scale(.375);
+}
+
+.foreground__image{
+	position: absolute;
+  	transform-origin: 0 50%;
+	top: 125px;
+  	transform: translateZ(2px) scale(.75);
+}
+*/
+
+
+/*
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: translateZ(0px);
+}
+
+.background img{
+	width: 100%;
+}
+
+.foreground {
+  margin-top: auto;
+  margin-bottom: 50px;
+  transform-origin: 0;
+  transform: translateZ(3px) scale(0.625);
+}
+
+.foreground h1 {
+  font-size: 36px;
+}
+*/
+/*
+------------
+Featured.php Section 4: Testimonials
+------------
+*/
+
+.section-4{
+	display: flex;
+	flex-flow: row wrap;
+}
+
+.annona-testimonial{
+	flex: 1 0;
+	color: var(--yellowlite);
+	padding: 2em;
+	font-size: 19px;
+}
+
+.annona-has-5-testimonials,
+.annona-has-6-testimonials{
+	flex: 1 0 33%;
+}
+
+.annona-testimonial h2,
+.testimonial-icon{
+	text-align: center;
+}
+
+.testimonial-icon i{
+	padding: 20px;
+	border-radius: 50%;
+	color: var(--purple); 
+	background: var(--yellowlite);
+}
+
+.annona-testimonial-0,
+.annona-testimonial-5{
+	background: var(--purpleDarkOne);
+}
+
+.annona-testimonial-1,
+.annona-testimonial-3{
+	background: var(--purple );
+}
+
+.annona-testimonial-2,
+.annona-testimonial-4{
+	background: var(--purpleLiteOne );
+}
+
+/*
+------------
+Featured.php Section 6: About Message
+------------
+*/
+
+.section-6{
+	/*padding: 12rem 1em 18rem;*/
+	position: relative;
+	
+	color: #000;
+	/*background: url('./assets/gate-3.svg');*/
+	background-repeat: no-repeat;
+	background-position: 0 0;
+	background-size: 100% 100%;
+	background-position: center;
+	min-height: 200px;
+}
+
+.section-6 .entry-content,
+.section-6 .page-title{
+	width: 60%;
+	margin: 0 auto;
+}
+
+.section-6-backdrop{
+	padding: 1rem;
+	position: relative;
+	width: 100%;
+	height: 100%;
+	z-index: -2;
+	background: var(--greenlite);
+}
+
+.section-6 .gate{
+	position: absolute;
+	z-index: -1;
+}
+
+.gate-top-left,
+.gate-top-right{
+	top: 5%;
+} 
+
+.gate-bottom-left,
+.gate-bottom-right,
+.gate-bottom-center{
+	bottom: 5%;
+}
+
+.gate-top-left,
+.gate-bottom-left{
+	left: 5%;
+}
+
+.gate-top-right,
+.gate-bottom-right{
+	right: 5%;
+}
+
+.gate-bottom-center{
+	left: 40% ;
+	width: 20%;
+}
+
+.gate-top-left,
+.gate-top-right,
+.gate-bottom-left,
+.gate-bottom-right{
+	max-width: 15%;
+	max-height: 30%;
+	stroke: var(--green);
+}
+
+/*
+Footer
+*/
+
+.widget_custom_html{
+	display: none;
+}
+
+.woocommerce.widget .product_list_widget{
+	display: flex;
+}
+
+.woocommerce.widget .product_list_widget li{
+	flex: 1 0;
+	margin: 0;
+	padding: 1em;
+	text-align: center;
+}
+
+.woocommerce.widget .product_list_widget li img{
+	width: auto;
+	height: auto;
+	border-radius: 50%;
+	margin-bottom: 1em;
+	float: none;
+}
+
+.woocommerce.widget .product_list_widget li span.product-title,
+.woocommerce.widget .product_list_widget li span.woocommerce-Price-amount{
+	text-align: center;
+	display: block;
+}
+
+
+
+
+
+
+
+
+
+
+
