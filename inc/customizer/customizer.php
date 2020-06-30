@@ -67,34 +67,144 @@ function annona_customize_register( $wp_customize ) {
 
 	}
 
+	//Featured Section 3
 	annona_make_customizer_section( $wp_customize, 3);
 	for ( $i = 1; $i <= 3; $i++ ){
 		annona_make_settings_and_controls( $wp_customize, 3, $i );
 	}
-	annona_make_customizer_section( $wp_customize, 4);
-	$num_testimonials = min( 6, apply_filters( 'annona_testimonial_count', 3 ));
-	for ( $i = 1; $i <= $num_testimonials; $i++ ){
-		annona_make_settings_and_controls( $wp_customize, 4, $i );
-	}
-	annona_make_customizer_section( $wp_customize, 5 );
-	$wp_customize->add_setting( 'annona-sec5-featured-image', array(
+
+	//Featured Section 4
+	annona_make_customizer_section( $wp_customize, 4 );
+	
+	$wp_customize->add_setting( 'annona-sec4-featured-image', array(
 		'default' => '',
 		'sanitize_callback' => 'absint'
 	));
+
+	$wp_customize->add_control( 'annona-sec4-featured-image', array(
+		'type' => 'select',
+		'label' => __( 'An image that will be prominently placed just before the testimonials.' , 
+			'annona' ),
+		'choices' => annona_sec4_featured_image_choices(),
+		'section' => 'annona-section-4-content'
+	));	
+ 	
+   	$wp_customize->add_setting( 'annona-show-section-4-text', array(
+		'default' => false,
+		'sanitize_callback' => 'annona_sanitize_checkbox'
+	));
+
+	$wp_customize->add_control( 'annona-show-section-4-text', array(
+		'type' => 'checkbox',
+		'label' => __( 'If checked, show the tagline and message over the featured image. If unchecked only the image will display.', 'annona' ),
+		'section' => 'annona-section-4-content'
+	));
+
+	$wp_customize->add_setting( 'annona-sec4-tagline-part1', array(
+		'default' => '',
+		'sanitize_callback' => 'sanitize_text_field'
+	));
+
+	$wp_customize->add_control( 'annona-sec4-tagline-part1', array(
+		'type' => 'text',
+		'label' => __( 'The first segment of a tagline that will be overlaid on top of the image. 
+			The tagline will be displayed over three lines.', 'annona' ),
+		'section' => 'annona-section-4-content',
+		'active_callback' => 'annona_show_section_4_content_control'
+	));
+
+	$wp_customize->add_setting( 'annona-sec4-tagline-part2', array(
+		'default' => '',
+		'sanitize_callback' => 'sanitize_text_field'
+	));
+
+	$wp_customize->add_control( 'annona-sec4-tagline-part2', array(
+		'type' => 'text',
+		'label' => __( 'The second part of the tagline.', 'annona' ),
+		'section' => 'annona-section-4-content',
+		'active_callback' => 'annona_show_section_4_content_control'
+	));
+
+	$wp_customize->add_setting( 'annona-sec4-tagline-part3', array(
+		'default' => '',
+		'sanitize_callback' => 'sanitize_text_field'
+	));
+
+	$wp_customize->add_control( 'annona-sec4-tagline-part3', array(
+		'type' => 'text',
+		'label' => __( 'The third part of the tagline.', 'annona' ),
+		'section' => 'annona-section-4-content',
+		'active_callback' => 'annona_show_section_4_content_control'
+	));
+
+	$wp_customize->add_setting( 'annona-sec4-message', array(
+		'default' => '',
+		'sanitize_callback' => 'sanitize_textarea_field'
+	));
+
+	$wp_customize->add_control( 'annona-sec4-message', array(
+		'type' => 'textarea',
+		'label' => __( 'A short message that, if specified, will follow the tagline', 'annona' ),
+		'section' => 'annona-section-4-content',
+		'active_callback' => 'annona_show_section_4_content_control'
+	));
+
+	/*
+	$wp_customize->add_setting( 'annona-sec4-tagline-color', array(
+		'default' => '',
+		'sanitize_callback' => 'sanitize_hex_color'
+	));
+
+	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'annona-sec4-tagline-color', array(
+		'label' => __( 'Color for the tagline.', 'annona' ),
+		'section' => 'annona-section-4-content',
+		'setting' => 'annona-sec4-tagline-color',
+		'active_callback' => 'annona_show_section_4_color_control'
+	)));
+
+	
+	$wp_customize->add_setting( 'annona-sec4-text-mask', array(
+		'default' => false,
+		'sanitize_callback' => 'annona_sanitize_checkbox'
+	));
+
+	$wp_customize->add_control( 'annona-sec4-text-mask', array(
+		'type' => 'checkbox',
+		'label' => __( 'Add a semi-opaque mask behind the tagline to improve readability', 'annona' ),
+		'section' => 'annona-section-4-content',
+		'active_callback' => 'annona_show_section_4_color_control'
+	));
+	*/
+	
+	/*
+	$wp_customize->add_setting( 'annona-sec4-content1', array(
+		'default' => '',
+		'sanitize_callback' => 'absint'
+	));
+
+	$wp_customize->add_control( new Annona_Dropdown_Posts_Control( $wp_customize, 'annona-sec4-content1', array(
+		'label' => __( 'Content to overlay this section\'s featured image', 'annona' ),
+		'section' => 'annona-section-4-content',
+		'active_callback' => 'annona_show_section_4_content_control'
+	)));
+	*/
+	//Featured Section 5 (Testimonials)
+	annona_make_customizer_section( $wp_customize, 5);
+	$num_testimonials = min( 6, apply_filters( 'annona_testimonial_count', 3 ));
+	for ( $i = 1; $i <= $num_testimonials; $i++ ){
+		annona_make_settings_and_controls( $wp_customize, 5, $i );
+	}
+	
+	
+
+	/*
+	
 	for ( $i = 1; $i <= 2; $i++ ){
 		annona_make_settings_and_controls( $wp_customize, 5, $i );
 	}
+	*/
 
 
-
-	$wp_customize->add_control( 'annona-sec5-featured-image', array(
-		'type' => 'select',
-		'label' => __( 'An image that will be prominently placed just before the testimonials.
-			Make it big and beautiful.' , 
-			'annona' ),
-		'choices' => annona_sec5_featured_image_choices(),
-		'section' => 'annona-section-5-content'
-	));
 	/*
 	for ( $i = 3; $i <= 4; $i++){
 		annona_make_customizer_section( $wp_customize, $i );
@@ -127,6 +237,14 @@ function annona_customize_partial_blogdescription() {
 }
 
 /**
+* Sanitize a checkbox.
+*/
+
+function annona_sanitize_checkbox( $val ){
+	return $val === true ? $val : false;
+}
+
+/**
 * Active callback for selecting content for the featured.php page template.
 */
 
@@ -139,7 +257,7 @@ function annona_is_featured(){
 * for section 5 of the featured page.
 */
 
-function annona_sec5_featured_image_choices(){
+function annona_sec4_featured_image_choices(){
 	$attachments = get_posts( array(
 		'post_type' => 'attachment',
 		'numberposts' => -1
@@ -150,6 +268,23 @@ function annona_sec5_featured_image_choices(){
 		$choices[ $post->ID ] = $post->post_title;
 	}
 	return $choices;
+}
+
+/**
+* Active callback for content dropdown for featured section 4.
+*
+*/
+
+function annona_show_section_4_color_control(){
+	if ( get_theme_mod( 'annona-sec4-tagline', '' ) === '' ){
+		return false;
+	} else{
+		return true;
+	}
+}
+
+function annona_show_section_4_content_control(){
+	return get_theme_mod( 'annona-show-section-4-text', false );
 }
 
 /**

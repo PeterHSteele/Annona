@@ -14,7 +14,7 @@
 
 get_header();
 ?>
-
+	<button class='menu-toggle banner-section-clickable' role="presentation"><i class="fas fa-bars fa-2x"></i></button>
 	<main id="primary" class="site-main">
 
 		<?php

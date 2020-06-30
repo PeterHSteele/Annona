@@ -180,6 +180,16 @@ if ( ! function_exists( 'annona_testimonials' ) ) :
 			}
 		}
 		$active = count( $active_testimonials );
+
+		$icons = array(
+			'fa-star',
+			'fa-trophy',
+			'fa-thumbs-up',
+			'fa-ribbon',
+			'fa-heart',
+			'fa-smile'
+		);
+
 		foreach ( $active_testimonials as $testimonial_num => $id ){
 			$content = apply_filters( 'the_content', get_the_content( null, null, $id ));
 			$class = implode(
@@ -195,7 +205,7 @@ if ( ! function_exists( 'annona_testimonials' ) ) :
 			?>
 			<section class="<?php echo esc_attr( $class ) ?>">
 				<div class="testimonial-icon">
-					<i class="fas fa-ribbon fa-3x"></i>
+					<i class="fas <?php echo $icons[$testimonial_num]; ?> fa-3x"></i>
 				</div> 
 				<h2><?php echo apply_filters( 'the_title', get_the_title( $id ), $id ); ?></h2> 
 				<?php echo $content; ?>
@@ -220,4 +230,19 @@ if ( ! function_exists( 'annona_background_image' ) ) :
 		}
 	}
 
+endif;
+
+if ( ! function_exists( 'annona_section_4_tagline') ):
+
+	function annona_section_4_tagline(){
+		$tagline = array( 
+			'one' => get_theme_mod( 'annona-sec4-tagline-part1', '' ), 
+			'two' => get_theme_mod( 'annona-sec4-tagline-part2', ''), 
+			'three' => get_theme_mod( 'annona-sec4-tagline-part3', '' ) 
+		);
+
+		foreach( $tagline as $number => $part ){
+			echo "<span class='tagline tagline-$number'>" . esc_html( $part ) . '</span>';
+		}
+	}
 endif;

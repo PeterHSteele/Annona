@@ -51,6 +51,12 @@ function annona_jetpack_setup() {
 add_action( 'after_setup_theme', 'annona_jetpack_setup' );
 
 /**
+* jetpack social menu
+*/
+
+add_theme_support( 'jetpack-social-menu' );
+
+/**
  * Custom render function for Infinite Scroll.
  */
 function annona_infinite_scroll_render() {

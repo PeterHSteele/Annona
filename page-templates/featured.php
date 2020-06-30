@@ -10,20 +10,7 @@
 */
 get_header();
 ?>
-	<div class="content-track">
-		<div class="horizontal-animate"> 
-		<nav id="site-navigation" class="main-navigation">
-			<?php
-			wp_nav_menu(
-				array(
-					'theme_location' => 'menu-1',
-					'menu_id'        => 'primary-menu',
-				)
-			);
-			?>
-		</nav><!-- #site-navigation -->
-		<div class="content">
-			<button class='menu-toggle banner-section-clickable' role="presentation"><i class="fas fa-bars fa-2x"></i></button> 
+		<button class='menu-toggle banner-section-clickable' role="presentation"><i class="fas fa-bars fa-2x"></i></button> 
 		<div class="hero">
 			<div class="img-featured">
 				<!--<div class="mask">-->
@@ -86,21 +73,63 @@ get_header();
 			<?php //var_dump( wp_get_attachment_image_src( get_theme_mod( 'annona-sec5-featured-image', null ), 'full')); ?>
 		</div>
 		</div>-->
-		<div id="section-5" class="section-5" >
-			<!--style="background-image: url(<?php annona_background_image( 'annona-sec5-featured-image', 'full' )?>);"-->
+		<div id="section-4" class="section-4" >
 			<section class="parallax bg1">
-				<?php echo wp_get_attachment_image( 2258, 'full', false, array( 'class' => 'parallax-image' ));  ?>
+				<?php
+				$attachment = get_theme_mod( 'annona-sec4-featured-image', false ); 
+				if ( $attachment ){
+					echo wp_get_attachment_image( $attachment , 'full', false, array( 'class' => 'parallax-image' )); 
+				}  
+				?>
 			</section>
 			<div class="parallax-content">
-				<section>
-					<h2>yup i am tired</h2>
-				</section>
-				<section class="parallax bg2">
-					<h2>bird chirps</h2>
-				</section>
+				<?php
+				$show_content = get_theme_mod( 'annona-show-section-4-text', false );
+				$message = get_theme_mod( 'annona-sec4-message' , '' );
+				
+				if ( $show_content ):
+					?>
+					<div class="sec-4-tagline">
+						<p>
+							<?php annona_section_4_tagline(); ?>
+						</p>
+					</div>
+					<div class="sec-4-content">
+						<p><?php echo esc_html( $message ) ?></p>
+					</div>
+				<?php endif; ?>
+				<!--<h2 class="parallax-overlay-title"><?php bloginfo('description') ?></h2>-->
 			</div>
 		</div>
-		<article id="section-4" class="section-4">
+			<!--<div id="section-4" class="section-4" >
+			style="background-image: url(<?php annona_background_image( 'annona-sec5-featured-image', 'full' )?>);"
+			<section class="parallax bg1">
+				<?php
+				$attachment = get_theme_mod( 'annona-sec4-featured-image', false ); 
+				if ( $attachment ){
+					echo wp_get_attachment_image( $attachment , 'full', false, array( 'class' => 'parallax-image' )); 
+				} 
+				?>
+			</section>
+			<div class="parallax-content">
+				 <?php 
+				 $tagline = get_theme_mod( 'annona-sec4-tagline', '' );
+				if ( $tagline ):
+					$tagline_color = get_theme_mod( 'annona-sec4-tagline-color', '#404040' );
+					$text_mask = get_theme_mod( 'annona-sec4-text-mask' , false ) ? 'annona-text-mask' : '';
+					?>
+					<div class="sec-4-title sec-4-tagline">
+						<p 
+						class="<?php echo $text_mask; ?>"
+						style="color: <?php echo esc_attr($tagline_color) ?>">
+						<?php echo esc_html( $tagline ) ?>
+						</p>
+					</div>
+				<?php endif; ?>
+				<h2 class="parallax-overlay-title"><?php bloginfo('description') ?></h2>
+			</div>
+		</div>-->
+		<article id="section-5" class="section-5">
 			<?php annona_testimonials(); ?>
 		</article>
 		<article id="section-6" class="section-6">
@@ -131,8 +160,5 @@ get_header();
 			</div><!--.section-6-backdrop-->
 		</article><!-- #main -->
 		</div><!--.content-->
-		</div><!--.horizontal-animate-->
-	</div><!--.container-->
-
 <?php
 get_footer();
