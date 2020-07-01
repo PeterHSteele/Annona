@@ -1112,12 +1112,6 @@ General
 	background: rgba( 0, 0, 0, .2 );
 }
 
-/*
-=================
-Layout
-=================
-*/
-
 .content-track{
 	overflow: hidden;
 	min-height: 100vh;
@@ -1135,18 +1129,39 @@ Layout
 	left: 0;
 }
 
-/*
-------------------
-Featured.php
-------------------
-*/
-
 
 .content{
 	position: relative;
 	top: 0;
 	left: 23.077%;
 	width: 76.923%
+}
+
+/*
+------------------
+Regular posts and pages
+------------------
+*/
+
+body:not(.page-template-featured) .content{
+	padding: 1em;
+	background: #fafcfe;
+}
+
+.page-title,
+.entry-title{
+	margin: 0;
+	padding: 40px 0 16px;	
+}
+
+/*
+------------------
+Featured.php
+------------------
+*/
+
+.page-template-featured .content{
+	padding: 0;
 }
 
 .img-featured{
