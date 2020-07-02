@@ -1,0 +1,173 @@
+:root{
+	--orange: #df7953;
+	--purple: #413956;
+	--purpleLiteTwo: #615870;
+	--purpleDarkTwo: #282240;
+	--green: #a4ac5c;
+	--yellow: #c59648;
+	--pinklite: #ff95aa;
+}
+
+body.woocommerce .content{
+	background: #fafaff;
+}
+
+.woocommerce ul.products{
+	display: flex;
+	flex-flow: row wrap;
+	list-style: none;
+	margin: 0;
+}
+
+.woocommerce ul.products > li {
+	flex: 1 0 25%;
+	padding: .5em;
+	margin: .5em;
+	position:relative;
+	background: #f5fff5;
+	
+	border-radius: 5px;
+	box-shadow: 2px 2px  #dfd;
+}
+
+.woocommerce ul.products > li a{
+	color: var(--purpleDarkTwo);
+	/*box-shadow: 5px 5px 10px 0 #ccc;*/
+}
+
+.woocommerce ul.products > li a:hover,
+.woocommerce ul.products > li a:focus,
+.woocommerce ul.products > li a:active{
+	color: var(--purpleLiteTwo);
+}
+
+span.onsale{
+	font-family: 'Norican', serif;
+	position: absolute;
+	background: var(--pinklite);
+	padding: .2em;
+	color: #fff;
+}
+
+.woocommerce .woocommerce-LoopProduct-link{
+	text-decoration: none;
+}
+
+.add_to_cart_button{
+	display: block;
+}
+
+/*
+================
+Single Product
+================
+*/
+
+form.cart{
+	padding: 1em 0;
+}
+
+form.cart button{
+	margin: 1em 0;
+	font-size: 1em;
+	background: var(--purpleDarkTwo);
+	color: #fff;
+	border-color: var(--pinklite);
+}
+
+form.cart button:hover{
+	background: var(--purpleLiteTwo);
+}
+
+ins{
+	background: var(--pinklite);
+	padding: .1em;
+	border-radius: 2px;
+}
+
+.single-product .product_meta > span{
+	display: block;
+}
+
+.wc-tabs-wrapper{
+	margin: 20px 0 0;
+}
+
+.wc-tabs{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.wc-tabs:after{
+	content: '';
+	display: table;
+	clear: both;
+}
+
+.wc-tabs li{
+	float: left;
+}
+
+.wc-tabs li:not(:first-child){
+	margin: 0 .5em;
+}
+
+.wc-tabs li a,
+.wc-tabs li a:visited{
+	color: #fff;
+	display: block;
+	background: var(--purpleDarkTwo);
+	text-decoration: none;
+	padding: .5em;
+}
+
+.wc-tabs li a:hover,
+.wc-tabs li a:focus,
+.wc-tabs li a:active{
+	background: var(--purpleLiteTwo);
+}
+
+.zoomImg{
+	display: none;
+}
+
+/*
+===============
+Pagination
+===============
+*/
+
+.woocommerce-pagination ul{
+	list-style: none;
+}
+
+.woocommerce-pagination ul:after{
+	display: table;
+	content: '';
+	clear: both;
+}
+
+.woocommerce-pagination ul li{
+	float: left;
+}
+
+.woocommerce-pagination ul li a{
+	display: block;
+	background: var(--purple);
+	color: white;
+	padding: 1em;
+}
+
+.woocommerce-pagination .current{
+	display: block;
+	background: var(--purpleLiteTwo);
+	color: #fff;
+	padding: 1em;
+}
+
+.woocommerce-pagination ul li a:hover,
+.woocommerce-pagination ul li a:focus,
+.woocommerce-pagination ul li a:active{
+	background: var(--purpleLiteTwo);
+}

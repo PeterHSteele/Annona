@@ -149,6 +149,10 @@ function annona_scripts() {
 	}
 
 	wp_enqueue_style( 'annona-style', get_stylesheet_uri(), array(), ANNONA_VERSION );
+
+	if ( is_woocommerce_activated() ){
+		wp_enqueue_style( 'annona-woocommerce-style', get_template_directory_uri() . '/css/woocommerce.css' );
+	}
 	
 	wp_enqueue_style( 'fontawesome', get_stylesheet_directory_uri() . '/assets/icons/fontawesome/css/all.css' );
 
@@ -209,4 +213,31 @@ function annona_add_widget_title_span( $title, $instance ){
 	$words[ $lastIndex ] = '<span class="emphasis">' . $lastWord . '</span>';
 	return implode( $words, " " );
 }
+
+if ( ! function_exists( 'annona_check_for_jetpack' ) ) :
+
+	function annona_check_for_jetpack(){
+		return function_exists( 'jetpack_social_menu' );
+	}
+
+endif;
+
+/**
+ * Check if WooCommerce is activated
+ */
+if ( ! function_exists( 'is_woocommerce_activated' ) ) {
+	function is_woocommerce_activated() {
+		if ( class_exists( 'woocommerce' ) ) { return true; } else { return false; }
+	}
+}
+
+/**
+ * Disable the default WooCommerce stylesheet.
+ *
+ * Removing the default WooCommerce stylesheet and enqueing your own will
+ * protect you during WooCommerce core updates.
+ *
+ * @link https://docs.woocommerce.com/document/disable-the-default-stylesheet/
+ */
+add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
 

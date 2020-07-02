@@ -1167,7 +1167,6 @@ Featured.php
 .img-featured{
 	width: 100%;
 	height: 100vh;
-	background-image: url('./assets/img/bdp1.jpg');
 	background-size: cover;
 	background-repeat: no-repeat;
 	padding-top: 10em;
@@ -1784,6 +1783,10 @@ From the Store
 
 .woocommerce.widget .product_list_widget li span.woocommerce-Price-amount{
 	color: #fff;
+}
+
+.product_list_widget ins{
+	padding: 0;
 }
 
 /*

@@ -67,6 +67,98 @@ function annona_customize_register( $wp_customize ) {
 
 	}
 
+	function annona_make_text_setting_and_control( $setting, $section, $label, &$wp_customize ){
+		$wp_customize->add_setting( $setting, array(
+			'default' => '',
+			'sanitize_callback' => 'sanitize_text_field'
+		));
+
+		$wp_customize->add_control( $setting, array(
+			'type' => 'text',
+			'label' => $label,
+			'section' => $section
+		));
+	}
+
+	function annona_make_attachment_image_setting_and_control( $setting, $section, $label, $choices, &$wp_customize ){
+		$wp_customize->add_setting( $setting, array(
+			'default' => false,
+			'sanitize_callback' => 'absint'
+		));
+
+		$wp_customize->add_control( $setting, array(
+		'type' => 'select',
+		'label' => $label,
+		'choices' => $choices,
+		'section' => $section
+	));
+	}
+
+	//Featured Section 1
+	annona_make_customizer_section( $wp_customize, 1);
+	annona_make_attachment_image_setting_and_control(
+		'annona-sec1-featured-image',
+		'annona-section-1-content',
+		__( 'An image that will be the first thing visitors to your site see.' , 'annona' ),
+		annona_sec4_featured_image_choices(),
+		$wp_customize
+	);
+
+	/*$wp_customize->add_control( 'annona-sec1-featured-image', array(
+		'type' => 'select',
+		'label' => __( 'An image that will be the first thing visitors to your site see.' , 
+			'annona' ),
+		'choices' => annona_sec4_featured_image_choices(),
+		'section' => 'annona-section-1-content'
+	));*/
+
+	//Featured Section 2
+	annona_make_customizer_section( $wp_customize, 2);
+	annona_make_text_setting_and_control( 
+		'annona-featured-sec2-link-text1', 
+		'annona-section-2-content', 
+		__( 'Link text for the first panel of section 2', 'annona' ),
+		$wp_customize 
+	);
+	
+	annona_make_text_setting_and_control(
+		'annona-featured-sec2-link-href1',
+		'annona-section-2-content',
+		__( 'URL for link in first panel of section 2.', 'annona'),
+		$wp_customize 
+	);
+
+	annona_make_text_setting_and_control(
+		'annona-featured-sec2-link-href2',
+		'annona-section-2-content',
+		__( 'URL for link in second panel of section 2.', 'annona'),
+		$wp_customize 
+	);
+
+	annona_make_text_setting_and_control( 
+		'annona-featured-sec2-link-text2', 
+		'annona-section-2-content', 
+		__( 'Link text for the second panel of section 2', 'annona' ),
+		$wp_customize  
+	);
+
+	annona_make_attachment_image_setting_and_control(
+		'annona_featured_sec2_image1',
+		'annona-section-2-content',
+		__( 'Image for the background of the first panel of section 2.' , 'annona' ),
+		annona_sec4_featured_image_choices(),
+		$wp_customize 
+	);
+
+	annona_make_attachment_image_setting_and_control(
+		'annona_featured_sec2_image2',
+		'annona-section-2-content',
+		__( 'Image for the background of the second panel of section 2.' , 'annona' ),
+		annona_sec4_featured_image_choices(),
+		$wp_customize 
+	);	
+
+
 	//Featured Section 3
 	annona_make_customizer_section( $wp_customize, 3);
 	for ( $i = 1; $i <= 3; $i++ ){

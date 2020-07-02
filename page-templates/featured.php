@@ -12,7 +12,9 @@ get_header();
 ?>
 		<button class='menu-toggle banner-section-clickable' role="presentation"><i class="fas fa-bars fa-2x"></i></button> 
 		<div class="hero">
-			<div class="img-featured">
+			<div 
+			class="img-featured"
+			style="background-image: url(<?php annona_background_image( 'annona-sec1-featured-image', 'full' ) ?>);">
 				<?php if ( is_front_page() ) : ?>
 					<h1 class="site-title "><span class="annona-text-mask"><?php bloginfo( 'name ' ) ?></span></h1>
 				<?php endif; ?>
@@ -23,29 +25,37 @@ get_header();
 			</div>
 		</div>
 		<section id="featured-secondary" class="secondary-img-section">
-			<div class="img-second">
+			<div class="img-second" style="background-image: url(<?php annona_background_image( 'annona_featured_sec2_image1' ) ?>)">
 				<div class="mask">
-					<a href='#' class='btn-link'>Order Delivery</a>
+					<a 
+					href="<?php echo esc_url( get_theme_mod( 'annona-featured-sec2-link-href1', '#featured-secondary' )) ?>" 
+					class='btn-link'>
+					<?php echo esc_html( get_theme_mod( 'annona-featured-sec2-link-text1' ), '' ) ?>
+					</a>
 				</div>
 			</div>
-			<div class="img-second">
+			<div class="img-second" style="background-image: url(<?php annona_background_image( 'annona_featured_sec2_image2' ) ?>)">
 				<div class="mask">
-					<a href='#' class='btn-link'>View Our Menu</a>
+					<a 
+					href="<?php echo esc_url( get_theme_mod( 'annona-featured-sec2-link-href1', '#featured-secondary' )) ?>"  
+					class='btn-link'>
+					<?php echo esc_html( get_theme_mod( 'annona-featured-sec2-link-text2' ), '' ) ?>
+				</a>
 				</div>
 			</div> 
 		</section>
 		<section id="section-3" class='section-3'>
 			<div>
 				<?php 
-				echo apply_filters( 'the_content', get_the_content( null, null, get_theme_mod( 'annona-sec3-content1' ))); 
+				echo apply_filters( 'the_content', get_the_content( null, null, get_theme_mod( 'annona-sec3-content1' , false ))); 
 				?>
 			</div>
 
 			<div>
-				<?php echo apply_filters( 'the_content', get_the_content( null, null, get_theme_mod( 'annona-sec3-content2' ))); ?>
+				<?php echo apply_filters( 'the_content', get_the_content( null, null, get_theme_mod( 'annona-sec3-content2', false ))); ?>
 			</div>
 			<div>
-				<?php echo apply_filters( 'the_content', get_the_content( null, null, get_theme_mod( 'annona-sec3-content3'  ))) ?>
+				<?php echo apply_filters( 'the_content', get_the_content( null, null, get_theme_mod( 'annona-sec3-content3', false ))) ?>
 			</div>
 		</section>
 		<div id="section-4" class="section-4" >

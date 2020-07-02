@@ -14,7 +14,8 @@
 	<footer id="colophon" class="site-footer">
 		<?php 
 		get_sidebar();
-		if ( has_nav_menu( 'menu-2') ) : 
+		$jetpack_exists = annona_check_for_jetpack();
+		if ( has_nav_menu( 'menu-2') || $jetpack_exists ) : 
 		?>
 		<div class="footer-navs-container">
 			<nav class="nav-secondary">
@@ -26,10 +27,13 @@
 				));
 			?>
 			</nav>
-			<?php endif; 
-			if ( function_exists( 'jetpack_social_menu' ) ) jetpack_social_menu(); 
+			<?php
+			if ( $jetpack_exists ){ 
+				jetpack_social_menu(); 
+			} 
 			?>
 		</div>
+		<?php endif; ?> 
 		<div class="footer-info">
 			<?php 
 			the_privacy_policy_link(); 
