@@ -383,9 +383,11 @@ Colors
 	--yellowlite: #ffcc7b;
 	--yellowrgba: rgba( 197, 150, 72, .7);
 	--green: #a4ac5c;
+	--lightblue: #eef;
 	--greenlite: #dce390;
 	--greenrgba: rgba(164, 172, 92, .7);
 	--greenblue: #83bd84;
+	--lightgreen: #dfd;
 	--purple: #413956;
 	--purplergba: rgba( 65, 57, 86, .6 );
 	--purpleLiteOne: #514867;
@@ -666,7 +668,7 @@ a:active {
 	margin: 0;
 	width: 23.077%;
 	height: 100vh;
-	background: var(--greenblue);
+	background: var(--lightgreen);
 	transition: .5s top;
 }
 
@@ -730,7 +732,7 @@ a:active {
 .main-navigation a:hover,
 .main-navigation a:visited,
 .main-navigation a:active{
-	color: var(--greenblue);
+	color: var(--lightgreen);
 }
 
 .main-navigation a:hover,
@@ -1060,30 +1062,6 @@ object {
 
 /*
 ==================
-Layout
-==================
-*/
-
-/*
-==================
-Page Templates
-==================
-*/
-/*
-:root{
-	--pink: #e95d76;
-
-	--orange: #df7953;
-	--yellow: #c59648;
-	--green: #a4ac5c;
-	--greenblue: #83bd84;
-	--purple: #413956;
-	--violet: #802fcb;
-}
-*/
-
-/*
-==================
 General
 ==================
 */
@@ -1329,8 +1307,6 @@ Featured.php Section: Image
 	text-align: center;
 }
 
-
-
 .parallax-overlay-title{
 	text-align: center;
 	font-size: 2.2em;
@@ -1353,14 +1329,7 @@ Featured.php Section: Image
 
 .sec-4-tagline p{
 	line-height: .6em;
-	margin-bottom: .5em;
-}
-
-.sec-4-tagline .tagline-one,
-.sec-4-tagline .tagline-two,
-.sec-4-tagline .tagline-three{
-	/*background: rgba( 0, 0, 0, .3);
-	padding: .5rem;*/
+	margin: .5em;
 }
 
 .sec-4-tagline .tagline-one{
@@ -1423,121 +1392,6 @@ Featured.php Section: Image
 	}
 }
 
-
-
-.sec-4-content{
-	/*color: #fff;
-	width: 40%;
-	float: right;
-	margin: 0 20px;
-	border-radius: 5px;
-	padding: 1rem;
-	background: rgba( 0, 0, 0, .4);
-	background: var(--orangergba);*/
-}
-
-/*
-.section-5 section{
-	position: relative;
-	height: 60vh;
-	display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  text-shadow: 0 0 5px #000;
-}
-
-.parallax:after{
-	content:"";
-	position: absolute;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	right: 0;
-	transform: translateZ(-1px) scale(1.5);
-	background-size: 100%;
-	z-index: -1;
-	height: 100%;
-}
-
-.bg1::after{
-	background-image: url('./assets/img/bdp4.jpg');
-}
-
-.bg2:after{
-	background-image: url('./assets/img/bdp2.jpg');
-}
-
-
-/*
-
-
-.parallax-container{
-  position: relative;
-  width: 100%;
-  height: 100%;
-  overflow-x: hidden;
-  overflow-y: scroll;
-  perspective: 8px;
-  perspective-origin: 0%;
-  display: flex;
-}
-
-.image {
-  position: absolute;
-  transform-origin: 0 50%;
-  width: 420px;
-  height: 420px;
-}
-
-.background__image{
-	position: absolute;
- 	 transform-origin: 0 50%;
-	height: 100%;
-  	transform: translateZ(0px) scale(1);
-}
-
-.middle__image{
-	position: absolute;
-  	transform-origin: 0 50%;
-	top: 150px;
-  	transform: translateZ(5px) scale(.375);
-}
-
-.foreground__image{
-	position: absolute;
-  	transform-origin: 0 50%;
-	top: 125px;
-  	transform: translateZ(2px) scale(.75);
-}
-*/
-
-
-/*
-.background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  transform: translateZ(0px);
-}
-
-.background img{
-	width: 100%;
-}
-
-.foreground {
-  margin-top: auto;
-  margin-bottom: 50px;
-  transform-origin: 0;
-  transform: translateZ(3px) scale(0.625);
-}
-
-.foreground h1 {
-  font-size: 36px;
-}
-*/
 /*
 ------------
 Featured.php Section 4: Testimonials
@@ -1556,9 +1410,25 @@ Featured.php Section 4: Testimonials
 	font-size: 19px;
 }
 
+.annona-testimonial a,
+.annona-testimonial a:visited{
+	color: var(--yellowlite);
+}
+
+.annona-testimonial a:hover,
+.annona-testimonial a:focus,
+.annona-testimonial a:active{
+	text-decoration: none
+}
+
 .annona-has-5-testimonials,
 .annona-has-6-testimonials{
-	flex: 1 0 33%;
+	flex: 1 0 33.33%;
+}
+
+.annona-has-5-testimonials.annona-testimonial-4{
+	flex: 1 0 66.67%;
+	background: var( --purpleDarkOne );
 }
 
 .annona-testimonial h2,
@@ -1588,6 +1458,10 @@ Featured.php Section 4: Testimonials
 	background: var(--purpleLiteOne );
 }
 
+.annona-testimonial a{
+
+}
+
 @media all and ( max-width: 900px){
 	.annona-testimonial{
 		flex: 1 0 50%;
@@ -1607,16 +1481,15 @@ Featured.php Section 6: About Message
 */
 
 .section-6{
-	/*padding: 12rem 1em 18rem;*/
 	position: relative;
-	
 	color: #000;
-	/*background: url('./assets/gate-3.svg');*/
+	background-image: url('./assets/chevron4.svg');
 	background-repeat: no-repeat;
 	background-position: 0 0;
-	background-size: 100% 100%;
+	background-size: cover;
 	background-position: center;
 	min-height: 200px;
+	padding: 1em;
 }
 
 .section-6 .entry-content,
@@ -1631,7 +1504,6 @@ Featured.php Section 6: About Message
 	width: 100%;
 	height: 100%;
 	z-index: -2;
-	background: var(--greenlite);
 }
 
 .section-6 .gate{

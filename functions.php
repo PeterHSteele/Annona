@@ -169,13 +169,7 @@ function annona_scripts() {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'annona_scripts' );
-/*
-function annona_increase_testimonial_count( $count ){
-	return 6;
-}
 
-add_filter( 'annona_testimonial_count' , 'annona_increase_testimonial_count' );
-*/
 /**
  * Implement the Custom Header feature.
  */
@@ -240,4 +234,3 @@ if ( ! function_exists( 'is_woocommerce_activated' ) ) {
  * @link https://docs.woocommerce.com/document/disable-the-default-stylesheet/
  */
 add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
-

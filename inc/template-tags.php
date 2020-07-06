@@ -174,7 +174,7 @@ if ( ! function_exists( 'annona_testimonials' ) ) :
 		$num_testimonials = min( 6, apply_filters( 'annona_testimonial_count', 3 ));
 		$active_testimonials = array();
 		for ( $i = 0; $i < $num_testimonials; $i++ ){
-			$source_post = get_theme_mod( 'annona-sec4-content' . ( $i + 1 ), null ); 
+			$source_post = get_theme_mod( 'annona-sec5-content' . ( $i + 1 ), null ); 
 			if ( $source_post ){
 				$active_testimonials[$i] = $source_post;
 			}
