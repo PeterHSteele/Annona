@@ -10,8 +10,6 @@ Stable tag: 1.0.0
 License: GNU General Public License v2 or later  
 License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html  
 
-A starter theme called annona.
-
 ## Description 
 
 A Food and Drink WordPress Theme
