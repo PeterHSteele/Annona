@@ -728,21 +728,36 @@ a:active {
 	transition: .5s padding;
 }
 
-.main-navigation a,
-.main-navigation a:hover,
-.main-navigation a:visited,
-.main-navigation a:active{
+.main-navigation ul a,
+.main-navigation ul a:hover,
+.main-navigation ul a:visited,
+.main-navigation ul a:active{
 	color: var(--lightgreen);
 }
 
-.main-navigation a:hover,
-.main-navigation a:focus{
+.main-navigation ul a:hover,
+.main-navigation ul a:focus{
 	background: var(--orange);
 	color: var(--purple);
 }
 
 .menu-active .main-navigation a{
 	padding: 1em;
+}
+
+.custom-logo-link{
+	position: absolute;
+	width: 60%;
+	bottom: 20px;
+	left: 20%;
+}
+
+a.custom-logo-link,
+a.custom-logo-link:hover,
+a.custom-logo-link:focus,
+a.custom-logo-link:visited,
+a.custom-logo-link:active{
+	background: var(--lightgreen);
 }
 
 /* Small menu. */
@@ -1261,14 +1276,10 @@ Featured.php
 }
 
 .section-3 > div{
-	flex: 0 0 25%;
+	flex: 1;
 	padding: 1em;
 }
-
-.section-3 > div:last-child{
-	flex: 0 0 50%;
-}
-
+/*
 @media all and (max-width: 750px ){
 	.section-3 > div{
 		flex: 0 0 50%;
@@ -1279,6 +1290,7 @@ Featured.php
 		flex: 0 0 100%;
 	}
 }
+*/
 /*
 ------------
 Featured.php Section: Image
@@ -1483,7 +1495,7 @@ Featured.php Section 6: About Message
 .section-6{
 	position: relative;
 	color: #000;
-	background-image: url('./assets/chevron4.svg');
+	background-image: url('./assets/graychev2.svg');
 	background-repeat: no-repeat;
 	background-position: 0 0;
 	background-size: cover;

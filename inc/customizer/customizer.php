@@ -159,11 +159,12 @@ function annona_customize_register( $wp_customize ) {
 	);	
 
 
-	//Featured Section 3
+	//Featured Section 3/*
 	annona_make_customizer_section( $wp_customize, 3);
-	for ( $i = 1; $i <= 3; $i++ ){
+	/*for ( $i = 1; $i <= 3; $i++ ){
 		annona_make_settings_and_controls( $wp_customize, 3, $i );
-	}
+	}*/
+	annona_make_settings_and_controls( $wp_customize, 3, 1 );
 
 	//Featured Section 4
 	annona_make_customizer_section( $wp_customize, 4 );

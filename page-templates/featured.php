@@ -45,18 +45,18 @@ get_header();
 			</div> 
 		</section>
 		<section id="section-3" class='section-3'>
-			<div>
-				<?php 
-				echo apply_filters( 'the_content', get_the_content( null, null, get_theme_mod( 'annona-sec3-content1' , false ))); 
-				?>
-			</div>
-
-			<div>
-				<?php echo apply_filters( 'the_content', get_the_content( null, null, get_theme_mod( 'annona-sec3-content2', false ))); ?>
-			</div>
-			<div>
-				<?php echo apply_filters( 'the_content', get_the_content( null, null, get_theme_mod( 'annona-sec3-content3', false ))) ?>
-			</div>
+			<?php 
+			$annona_sec3_content1 = get_theme_mod( 'annona-sec3-content1' , false );
+			$annona_sec3_content2 = get_theme_mod( 'annona-sec3-content2' , false );
+			$annona_sec3_content3 = get_theme_mod( 'annona-sec3-content3' , false );
+			foreach ( [$annona_sec3_content1, $annona_sec3_content2, $annona_sec3_content3] as $content ){
+				if ( $content ) {
+					echo '<div>';
+					echo apply_filters( 'the_content', get_the_content( null, null, $content ));
+					echo '</div>';
+				}
+			}
+			?>
 		</section>
 		<div id="section-4" class="section-4" >
 			<section class="parallax bg1">
@@ -89,7 +89,7 @@ get_header();
 			<?php annona_testimonials(); ?>
 		</article>
 		<article id="section-6" class="section-6">
-			<svg xmlns="http://www.w3.org/2000/svg" class="gate gate-bottom-right" viewBox="0 0 91.83 129.6"><defs><style>.cls-1{fill:none;stroke:#cbd280;stroke-miterlimit:10;}</style></defs><title>gate-bottom-right</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><path class="cls-1" d="M53.83,113.41c-8-4.33-11.41-13.55-8.5-20.68,3.49-8.55,14.24-9.8,20.68-8.51,6.77,1.37,13.42,6.54,15.08,13.14,2.57,10.27-7.26,24.85-26.29,30.16-5.72,1.34-22,4.36-35.76-4.64-21.42-14-18.83-45.34-18-55.47C3.48,38.92,21,1.84,46.1.54,60.18-.19,72.84,10.62,75.28,12.71c5.45,4.66,16.12,13.77,16,27.25C91.25,54,79.62,70.66,65,70.11,48.65,69.5,35.5,47.35,41.46,36.29c3.28-6.09,12.45-12.07,20.68-8.5,6.92,3,11,11.8,8.51,20.68"/></g></g></svg>-->
+			<svg xmlns="http://www.w3.org/2000/svg" class="gate gate-bottom-right" viewBox="0 0 91.83 129.6"><defs><style>.cls-1{fill:none;stroke:#cbd280;stroke-miterlimit:10;}</style></defs><title>gate-bottom-right</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><path class="cls-1" d="M53.83,113.41c-8-4.33-11.41-13.55-8.5-20.68,3.49-8.55,14.24-9.8,20.68-8.51,6.77,1.37,13.42,6.54,15.08,13.14,2.57,10.27-7.26,24.85-26.29,30.16-5.72,1.34-22,4.36-35.76-4.64-21.42-14-18.83-45.34-18-55.47C3.48,38.92,21,1.84,46.1.54,60.18-.19,72.84,10.62,75.28,12.71c5.45,4.66,16.12,13.77,16,27.25C91.25,54,79.62,70.66,65,70.11,48.65,69.5,35.5,47.35,41.46,36.29c3.28-6.09,12.45-12.07,20.68-8.5,6.92,3,11,11.8,8.51,20.68"/></g></g></svg>
 			<?php
 			while ( have_posts() ) :
 				the_post();

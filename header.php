@@ -34,6 +34,7 @@
 					'depth'	    	 => 1
 				)
 			);
+			the_custom_logo();
 			?>
 		</nav><!-- #site-navigation -->
 	<div class="content">
