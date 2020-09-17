@@ -5,6 +5,7 @@
  */
 
 	function Annona_Main_Navigation(){
+		this.body = document.querySelector( 'body' );
 		this.toggle = document.querySelector( '.menu-toggle' );
 		this.nav = document.querySelector( '.main-navigation' );
 		this.navLinks = this.nav.getElementsByTagName( 'a' );
@@ -63,17 +64,23 @@
 		}
 
 		this.disableScrolling = function(){
+			
 			this.boundHandleKeyPress = this.handleKeyPress.bind(this);
 			window.addEventListener( 'wheel', this.preventDefault, this.wheelOpt);
 			window.addEventListener( 'keydown', this.boundHandleKeyPress );
 			window.addEventListener( 'touchmove', this.preventDefault, false);
+			//ios
+			document.addEventListener('touchmove', this.preventDefault, this.wheelOpt );
 			
+
 		}
 
 		this.enableScrolling = function(){
 			window.removeEventListener( 'wheel', this.preventDefault, this.wheelOpt);
 			window.removeEventListener( 'keydown', this.boundHandleKeyPress );
 			window.removeEventListener( 'touchmove', this.preventDefault, false);
+			//ios
+			document.removeEventListener('touchmove', this.preventDefault, this.wheelOpt );
 		}
 
 		this.addListeners = function(){
